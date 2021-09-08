@@ -25,6 +25,7 @@
         "@typescript-eslint"
     ],
     "rules": {
+        /* FIXES FOR TYPESCRIPT/REACT BASED ENVIRONMENT */
         // Use the typescript package for using undefined variables.
         // Note you must disable the base rule as it can report incorrect errors.
         "no-use-before-define": "off",
@@ -47,7 +48,14 @@
                 "ts": "never",
                 "tsx": "never"
             }
-        ]
+        ],
+
+        /* OPINIONATED RULE CONFIGURATIONS */
+        // Use tabs over spaces.
+        "no-tabs": ["off"],
+        "indent": ["error", "tab"],
+        "react/jsx-indent": ["error", "tab"],
+        "react/jsx-indent-props": ["error", "tab"]
     },
     "settings": {
         // This is required to have TypeScript imports with ESLint.
