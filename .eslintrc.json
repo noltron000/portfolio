@@ -1,3 +1,5 @@
+// This entire configuration assumes TypeScript files only.
+// Vanilla JavaScript files are untested! Don't use them!
 {
     "env": {
         "browser": true,
@@ -5,7 +7,10 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb"
+        "airbnb",
+        // WARNING: The following extention may override some of airbnb's styles.
+        // Perhaps there is an typescript-airbnb style guide to use?
+        "plugin:@typescript-eslint/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -20,5 +25,36 @@
         "@typescript-eslint"
     ],
     "rules": {
+        // Use the typescript package for using undefined variables.
+        // Note you must disable the base rule as it can report incorrect errors.
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": ["error"],
+
+        // Similarly, use typescript for no-shadow as well.
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": ["error"],
+
+        // The eslint-react extention assumes only jsx, never tsx.
+        // Allow eslint to also find react syntax in tsx files.
+        "react/jsx-filename-extension": ["error", {"extensions": [".tsx"]}],
+
+        // Conventionally, components do not require an extention when imported.
+        // ESLint doesn't understand this with TypeScript files, unless specified.
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "ts": "never",
+                "tsx": "never"
+            }
+        ]
+    },
+    "settings": {
+        // This is required to have TypeScript imports with ESLint.
+        // Otherwise, ESLint will throw unresolved import errors.
+        // It leverages the eslint-import-resolver-typescript library.
+        "import/resolver": {
+            "typescript": {"alwaysTryTypes": true}
+        }
     }
 }
