@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 
@@ -13,15 +14,30 @@ function App() {
 					<code>src/App.tsx</code>
 					{' '}
 					and save to reload.
+
+					<br />
+
+					Navigate to
+					{' '}
+					<Link
+						className="App-link"
+						to="/"
+					>
+						Home
+					</Link>
+					{' '}
+					to test another page.
 				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
+				<p>
+					<a
+						className="App-link"
+						href="https://reactjs.org"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Learn React
+					</a>
+				</p>
 			</header>
 		</div>
 	);
