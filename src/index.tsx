@@ -9,7 +9,7 @@ import {
 
 /* Local Imports */
 import './index.css';
-import App from './App';
+import App from './pages/App/App';
 import reportWebVitals from './reportWebVitals';
 
 /* React Renderer */
