@@ -1,6 +1,6 @@
-// This entire configuration assumes TypeScript files only.
-// Vanilla JavaScript files are untested! Don't use them!
 {
+	// This entire configuration assumes TypeScript files only.
+	// Vanilla JavaScript files are untested! Don't use them!
 	"env": {
 		"browser": true,
 		"es2021": true
@@ -55,8 +55,24 @@
 		"no-tabs": ["off"],
 		"indent": ["error", "tab"],
 		"react/jsx-indent": ["error", "tab"],
-		"react/jsx-indent-props": ["error", "tab"]
+		"react/jsx-indent-props": ["error", "tab"],
+
+		// Disallow default props.
+		"react/require-default-props": ["off"]
 	},
+	"overrides": [
+		{
+			"files": [
+				"**/*.stories.*"
+			],
+			"rules": {
+				"import/no-anonymous-default-export": ["off"],
+				"import/no-extraneous-dependencies": ["off"],
+				"react/jsx-props-no-spreading": ["warn"],
+				"import/prefer-default-export": ["warn"]
+			}
+		}
+	],
 	"settings": {
 		// This is required to have TypeScript imports with ESLint.
 		// Otherwise, ESLint will throw unresolved import errors.
