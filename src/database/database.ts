@@ -1,26 +1,20 @@
 import * as Mongoose from "mongoose";
 import {uri} from '../database.env'
-import {ProjectModel} from './projects/projects.model'
 
 let database: Mongoose.Connection
 
-const connect = () => {
-  if (database) {
-    return
-  }
+const connect = async (): Promise<void> => {
+  try {
+    if (database) {
+      return
+    }
 
-  Mongoose.connect(uri)
-  database = Mongoose.connection;
-
-  database.once("open", async () => {
+    await Mongoose.connect(uri)
     console.info("Connected to database");
-  });
-
-  database.on("error", () => {
+  }
+  catch {
     console.error("Error connecting to database");
-  });
-
-  return {ProjectModel}
+  }
 }
 
 const disconnect = () => {
@@ -33,5 +27,4 @@ const disconnect = () => {
 export {
   connect,
   disconnect,
-  database,
 }
