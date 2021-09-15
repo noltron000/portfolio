@@ -29,7 +29,7 @@ async function findByAge(
     })
   }
   else {
-    results = this
+    results = await this.find()
   }
 
   // Sorts the results in-place.

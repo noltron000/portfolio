@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
-import * as Statics from "./projects.statics"
-import * as Methods from "./projects.methods"
+import { findByAge } from "./projects.statics"
+import { setRevisionDate } from "./projects.methods"
 
 // Design the schema in accordance with its types.
 const ProjectSchema = new Schema({
@@ -14,13 +14,9 @@ const ProjectSchema = new Schema({
 });
 
 // Assign all static methods exported for a project.
-Object.entries(Statics).forEach(([key, method]) => {
-  ProjectSchema.statics[key] = method
-})
+ProjectSchema.statics.findByAge = findByAge
 
 // Assign all instance methods exported for a project.
-Object.entries(Methods).forEach(([key, method]) => {
-  ProjectSchema.methods[key] = method
-})
+ProjectSchema.methods.setRevisionDate = setRevisionDate
 
 export default ProjectSchema;

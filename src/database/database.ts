@@ -1,5 +1,6 @@
 import * as Mongoose from "mongoose";
 import {uri} from '../database.env'
+import {ProjectModel} from './projects/projects.model'
 
 let database: Mongoose.Connection
 
@@ -8,7 +9,6 @@ const connect = () => {
     return
   }
 
-  // TODO: Add my own URI below.
   Mongoose.connect(uri)
   database = Mongoose.connection;
 
@@ -19,6 +19,8 @@ const connect = () => {
   database.on("error", () => {
     console.error("Error connecting to database");
   });
+
+  return {ProjectModel}
 }
 
 const disconnect = () => {
@@ -31,4 +33,5 @@ const disconnect = () => {
 export {
   connect,
   disconnect,
+  database,
 }
