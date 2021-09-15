@@ -1,5 +1,5 @@
 import * as Mongoose from "mongoose";
-// import { ProjectModel } from "./projects/projects.model";
+import {uri} from '../database.env'
 
 let database: Mongoose.Connection
 
@@ -9,7 +9,6 @@ const connect = () => {
   }
 
   // TODO: Add my own URI below.
-  const uri: string = ''
   Mongoose.connect(uri)
   database = Mongoose.connection;
 
