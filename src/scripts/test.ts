@@ -1,8 +1,9 @@
-import { connect, disconnect } from "../database/database";
-import {ProjectModel} from '../database/projects/projects.model'
+import { connect, disconnect } from "mongoose"
+import { uri } from "../database.env"
+import { ProjectModel } from '../database/projects/projects.model'
 
 (async () => {
-  await connect();
+  await connect(uri);
 
   // test static methods
   const projects = await ProjectModel.findByAge();
