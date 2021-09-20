@@ -58,7 +58,10 @@
 		"react/jsx-indent-props": ["error", "tab"],
 
 		// Disallow default props.
-		"react/require-default-props": ["off"]
+		"react/require-default-props": ["off"],
+
+		// Use htmlFor with form labels.
+		"jsx-a11y/label-has-associated-control": ["error", {"assert": "htmlFor"}]
 	},
 	"overrides": [
 		{
