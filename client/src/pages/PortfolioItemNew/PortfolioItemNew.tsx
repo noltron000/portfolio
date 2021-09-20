@@ -1,16 +1,7 @@
 import React from 'react';
+import PortfolioItemForm from '../../components/PortfolioItemForm/PortfolioItemForm';
 
-const PortfolioItemNew = () => {
-	const item = null;
-
-	// Show the form to submit a new item.
-	// Actually create it on submit.
-	return (
-		<>
-			<h2>New Portfolio Item</h2>
-			<p>Create a new item.</p>
-		</>
-	);
-};
+// Show the form to create and submit a new item.
+const PortfolioItemNew = (): JSX.Element => <PortfolioItemForm type="new" />;
 
 export default PortfolioItemNew;

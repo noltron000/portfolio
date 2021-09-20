@@ -1,15 +1,21 @@
 import React from 'react';
+import PortfolioItemForm from '../../components/PortfolioItemForm/PortfolioItemForm';
 
-const PortfolioItemEdit = () => {
-	const item = null;
+// Mock data
+const data = {
+	name: 'AsyncRacing',
+	description: 'Track your race records with your friends!',
+};
 
-	// Load data on the portfolio item and populate the form.
-	// Allow the data to be changed and submitted to update.
+// Show the form to create and submit a new item.
+const PortfolioItemEdit = (): JSX.Element => {
+	const { name, description } = data;
 	return (
-		<>
-			<h2>Edit Portfolio Item</h2>
-			<p>Edit the selected Portfolio Item!</p>
-		</>
+		<PortfolioItemForm
+			type="edit"
+			initialName={name}
+			initialDescription={description}
+		/>
 	);
 };
 
