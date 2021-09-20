@@ -1,20 +1,22 @@
-import { connect, disconnect } from "../database/database";
+import { connect, disconnect } from "mongoose"
+import { uri } from "../database.env"
+import { ProjectModel } from '../database/projects/projects.model'
 
 (async () => {
-  const db = connect();
+  await connect(uri);
 
   // test static methods
-  const projects = await db.ProjectModel.findByAge();
-  console.log(projects)
+  const projects = await ProjectModel.findByAge();
+  console.info('projects', projects)
 
   // test retrieving data
-  const existingProject = await db.ProjectModel.findOne({
+  const existingProject = await ProjectModel.findOne({
     name: "AsyncRacing"
   })
 
   // test instance methods
   await existingProject.setRevisionDate();
-  console.log(existingProject)
+  console.info('existingProject', existingProject)
 
   disconnect();
 })();

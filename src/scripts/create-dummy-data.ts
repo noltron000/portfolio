@@ -1,8 +1,9 @@
 import { ProjectModel } from "../database/projects/projects.model"
-import { connect, disconnect } from "../database/database"
+import { connect, disconnect } from "mongoose"
+import { uri } from "../database.env"
 
 (async () => {
-  connect();
+  connect(uri);
 
   const now = new Date(Date.now());
   const projects = [
