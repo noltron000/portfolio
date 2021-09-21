@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 interface Props {
 	type: 'new' | 'edit';
@@ -21,12 +21,15 @@ const ProjectForm = ({
 
 	// Determine form action and method.
 	let action: string;
+	let backUrl: string;
 	let method: 'POST' | 'PUT';
 	if (type === 'new') {
+		backUrl = '/';
 		action = '/projects/create';
 		method = 'POST';
 	}
 	else if (type === 'edit') {
+		backUrl = `/${id}`;
 		action = `/projects/${id}/update`;
 		method = 'POST';
 	}
@@ -80,6 +83,13 @@ const ProjectForm = ({
 				<br />
 
 				<button type="submit">Submit</button>
+
+				<p>User Links</p>
+				<ul>
+					<li>
+						<Link to={backUrl}>Back</Link>
+					</li>
+				</ul>
 			</form>
 		</>
 	);

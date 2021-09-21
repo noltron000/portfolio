@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 
 const ProjectShow = (): JSX.Element => {
 	// Grab the url parameters.
@@ -21,6 +21,9 @@ const ProjectShow = (): JSX.Element => {
 		fetchProject();
 	}, []);
 
+	// Must use history to redirect a button onClick.
+	const history = useHistory();
+
 	// Load data on the portfolio item and display it nicely.
 	return (
 		<>
@@ -34,13 +37,18 @@ const ProjectShow = (): JSX.Element => {
 			<p>User Links</p>
 			<ul>
 				<li>
+					<Link to="/">Back</Link>
+				</li>
+				<li>
 					<Link to={`/${id}/edit`}>Edit</Link>
 				</li>
 				<li>
 					<button
 						type="button"
 						onClick={async (event) => {
+							event.preventDefault();
 							await fetch(`/projects/${id}/delete`, { method: 'POST' });
+							history.push('/');
 						}}
 					>
 						Delete

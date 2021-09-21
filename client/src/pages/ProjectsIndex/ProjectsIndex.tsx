@@ -26,15 +26,21 @@ const ProjectsIndex = () => {
 			<p>Here&apos;s a list of items.</p>
 			<ul>
 				{projects.map((project) => (
-
+					// Map over each project and create list items.
 					<li key={project._id}>
 						<Link to={`/${project._id}`}>
 							<h3>{project.name}</h3>
 						</Link>
 						{project.description}
 					</li>
-
 				))}
+			</ul>
+
+			<p>User Links</p>
+			<ul>
+				<li>
+					<Link to="/new">Add a Project</Link>
+				</li>
 			</ul>
 		</>
 	);
