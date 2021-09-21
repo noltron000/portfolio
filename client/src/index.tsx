@@ -23,25 +23,35 @@ ReactDOM.render(
 		<Router>
 			<Switch>
 
-				<Route path="/new">
-					<ProjectNew />
-				</Route>
+				<Route
+					path="/new"
+					component={ProjectNew}
+				/>
 
-				<Redirect from="/index" to="/" />
+				<Redirect
+					from="/index"
+					to="/"
+				/>
 
-				<Route path="/:id/edit">
-					<ProjectEdit />
-				</Route>
+				<Route
+					path="/:id/edit"
+					component={ProjectEdit}
+				/>
 
-				<Redirect from="/:id/show" to="/:id" />
+				<Redirect
+					from="/:id/show"
+					to="/:id"
+				/>
 
-				<Route path="/:id">
-					<ProjectShow />
-				</Route>
+				<Route
+					path="/:id"
+					component={ProjectShow}
+				/>
 
-				<Route path="/">
-					<ProjectsIndex />
-				</Route>
+				<Route
+					path="/"
+					component={ProjectsIndex}
+				/>
 			</Switch>
 		</Router>
 	</React.StrictMode>,
