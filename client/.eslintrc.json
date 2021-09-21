@@ -50,6 +50,9 @@
 			}
 		],
 
+		// MongoDB uses underscore dangle.
+		"no-underscore-dangle": ["off"],
+
 		/* OPINIONATED RULE CONFIGURATIONS */
 		// Use tabs over spaces.
 		"no-tabs": ["off"],
