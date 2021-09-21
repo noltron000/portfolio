@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ProjectShow = (): JSX.Element => {
 	// Grab the url parameters.
@@ -30,6 +30,23 @@ const ProjectShow = (): JSX.Element => {
 				<h3>{project.name}</h3>
 				<p>{project.description}</p>
 			</div>
+
+			<p>User Links</p>
+			<ul>
+				<li>
+					<Link to={`/${id}/edit`}>Edit</Link>
+				</li>
+				<li>
+					<button
+						type="button"
+						onClick={async (event) => {
+							await fetch(`/projects/${id}/delete`, { method: 'POST' });
+						}}
+					>
+						Delete
+					</button>
+				</li>
+			</ul>
 		</>
 	);
 };
