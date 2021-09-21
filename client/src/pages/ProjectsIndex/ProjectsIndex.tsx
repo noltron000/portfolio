@@ -10,7 +10,8 @@ const ProjectsIndex = () => {
 			});
 			const dbProjects = await response.json();
 			setProjects(dbProjects);
-		} catch (err) {
+		}
+		catch (err) {
 			console.error(err);
 		}
 	};

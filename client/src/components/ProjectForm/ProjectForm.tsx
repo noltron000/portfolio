@@ -21,10 +21,12 @@ const ProjectForm = ({
 	if (type === 'new') {
 		action = 'create';
 		method = 'POST';
-	} else if (type === 'edit') {
+	}
+	else if (type === 'edit') {
 		action = 'update';
 		method = 'PUT';
-	} else {
+	}
+	else {
 		throw new TypeError('Unexpected component type!');
 	}
 
