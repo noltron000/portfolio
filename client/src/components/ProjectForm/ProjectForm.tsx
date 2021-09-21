@@ -6,7 +6,7 @@ interface Props {
 	initialDescription?: string;
 }
 
-const PortfolioItemForm = ({
+const ProjectForm = ({
 	type,
 	initialName,
 	initialDescription,
@@ -62,4 +62,4 @@ const PortfolioItemForm = ({
 	);
 };
 
-export default PortfolioItemForm;
+export default ProjectForm;

@@ -1,5 +1,5 @@
 import React from 'react';
-import PortfolioItemForm from '../../components/PortfolioItemForm/PortfolioItemForm';
+import ProjectForm from '../../components/ProjectForm/ProjectForm';
 
 // Mock data
 const data = {
@@ -8,10 +8,10 @@ const data = {
 };
 
 // Show the form to create and submit a new item.
-const PortfolioItemEdit = (): JSX.Element => {
+const ProjectEdit = (): JSX.Element => {
 	const { name, description } = data;
 	return (
-		<PortfolioItemForm
+		<ProjectForm
 			type="edit"
 			initialName={name}
 			initialDescription={description}
@@ -19,4 +19,4 @@ const PortfolioItemEdit = (): JSX.Element => {
 	);
 };
 
-export default PortfolioItemEdit;
+export default ProjectEdit;

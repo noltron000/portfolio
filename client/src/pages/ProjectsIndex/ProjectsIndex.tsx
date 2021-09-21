@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const PortfolioIndex = () => {
+const ProjectsIndex = () => {
 	const [projects, setProjects] = useState<null | Record<string, unknown>>(null);
 
 	const fetchProjects = async () => {
@@ -30,4 +30,4 @@ const PortfolioIndex = () => {
 	);
 };
 
-export default PortfolioIndex;
+export default ProjectsIndex;
