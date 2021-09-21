@@ -53,13 +53,13 @@ const createProject = async (req, res) => {
 		const {
 			name,
 			description,
-			creationDate,
 		} = req.body
+		const now = new Date(Date.now())
 
 		const project = new ProjectModel({
 			name,
 			description,
-			creationDate,
+			creationDate: now,
 		})
 
 		await project.save()
@@ -77,14 +77,12 @@ const updateProject = async (req, res) => {
 		const {
 			name,
 			description,
-			creationDate,
 		} = req.body
 		const now = new Date(Date.now())
 
 		const project = await ProjectModel.findById(id)
 		project.name = name
 		project.description = description
-		project.creationDate = creationDate
 		project.revisionDate = now
 
 		await project.save()
