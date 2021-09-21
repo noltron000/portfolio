@@ -1,4 +1,4 @@
-import { IProjectDocument } from "./projects.types";
+import { IProjectDocument } from "./types";
 
 async function findByAge(
   after?: Date,

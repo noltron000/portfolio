@@ -1,6 +1,6 @@
 import * as express from "express";
 import { connect } from "mongoose";
-import projectRoutes from "./database/projects/projects.routes"
+import projectRoutes from "./database/projects/router"
 
 import { uri } from "./database.env";
 

@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
-import { findByAge } from "./projects.statics"
-import { setRevisionDate } from "./projects.methods"
+import { findByAge } from "./statics"
+import { setRevisionDate } from "./methods"
 
 // Design the schema in accordance with its types.
 const ProjectSchema = new Schema({

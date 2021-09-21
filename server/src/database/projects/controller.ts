@@ -1,4 +1,4 @@
-import { ProjectModel } from './projects.model'
+import { ProjectModel } from './model'
 
 /* GET ROUTES */
 // Shows overview of many projects

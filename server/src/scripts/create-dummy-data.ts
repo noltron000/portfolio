@@ -1,4 +1,4 @@
-import { ProjectModel } from "../database/projects/projects.model"
+import { ProjectModel } from "../database/projects/model"
 import { connect, disconnect } from "mongoose"
 import { uri } from "../database.env"
 

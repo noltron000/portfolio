@@ -1,6 +1,6 @@
 import { connect, disconnect } from "mongoose"
 import { uri } from "../database.env"
-import { ProjectModel } from '../database/projects/projects.model'
+import { ProjectModel } from '../database/projects/model'
 
 (async () => {
   await connect(uri);
