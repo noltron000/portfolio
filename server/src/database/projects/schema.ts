@@ -4,13 +4,13 @@ import { setRevisionDate } from "./methods"
 
 // Design the schema in accordance with its types.
 const ProjectSchema = new Schema({
-  name: String,
-  description: String,
-  creationDate: Date,
-  revisionDate: {
-    type: Date,
-    required: false,
-  },
+	name: String,
+	description: String,
+	creationDate: Date,
+	revisionDate: {
+		type: Date,
+		required: false,
+	},
 });
 
 // Assign all static methods exported for a project.

@@ -12,5 +12,5 @@ connect(uri);
 app.use('/', projectRoutes)
 
 app.listen(port, () => {
-  console.info(`Server started on http://localhost:${port}`);
+	console.info(`Server started on http://localhost:${port}`);
 });
