@@ -6,7 +6,7 @@ const ProjectShow = (): JSX.Element => {
 	const { id } = useParams<{id: string}>();
 
 	// Gather the projects asyncronously using state, fetch, and effects.
-	const [project, setProject] = useState<any>({});
+	const [project, setProject] = useState<any>({}); // TODO: Type-ify this
 	const fetchProject = async () => {
 		try {
 			const response = await fetch(`/projects/${id}`, { method: 'GET' });
