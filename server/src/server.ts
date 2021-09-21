@@ -1,5 +1,6 @@
 import * as express from "express";
 import { connect } from "mongoose";
+import projectRoutes from "./database/projects/projects.routes"
 
 import { uri } from "./database.env";
 
@@ -8,9 +9,7 @@ const port = 5000;
 
 connect(uri);
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use('/', projectRoutes)
 
 app.listen(port, () => {
   console.info(`Server started on http://localhost:${port}`);
