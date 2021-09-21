@@ -33,14 +33,14 @@ ReactDOM.render(
 					to="/"
 				/>
 
-				<Route
-					path="/:id/edit"
-					component={ProjectEdit}
-				/>
-
 				<Redirect
 					from="/:id/show"
 					to="/:id"
+				/>
+
+				<Route
+					path="/:id/edit"
+					component={ProjectEdit}
 				/>
 
 				<Route
