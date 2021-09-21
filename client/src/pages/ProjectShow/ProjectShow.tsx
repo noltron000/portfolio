@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PortfolioItemShow = () => {
+const ProjectShow = () => {
 	const item = null;
 
 	// Load data on the portfolio item and display it nicely.
@@ -12,4 +12,4 @@ const PortfolioItemShow = () => {
 	);
 };
 
-export default PortfolioItemShow;
+export default ProjectShow;

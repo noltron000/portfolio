@@ -10,10 +10,10 @@ import {
 
 /* Local Imports */
 import './index.css';
-import PortfolioIndex from './pages/PortfolioIndex/PortfolioIndex';
-import PortfolioItemNew from './pages/PortfolioItemNew/PortfolioItemNew';
-import PortfolioItemShow from './pages/PortfolioItemShow/PortfolioItemShow';
-import PortfolioItemEdit from './pages/PortfolioItemEdit/PortfolioItemEdit';
+import ProjectsIndex from './pages/ProjectsIndex/ProjectsIndex';
+import ProjectNew from './pages/ProjectNew/ProjectNew';
+import ProjectShow from './pages/ProjectShow/ProjectShow';
+import ProjectEdit from './pages/ProjectEdit/ProjectEdit';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -24,23 +24,23 @@ ReactDOM.render(
 			<Switch>
 
 				<Route path="/new">
-					<PortfolioItemNew />
+					<ProjectNew />
 				</Route>
 
 				<Redirect from="/index" to="/" />
 
 				<Route path="/:id/edit">
-					<PortfolioItemEdit />
+					<ProjectEdit />
 				</Route>
 
 				<Redirect from="/:id/show" to="/:id" />
 
 				<Route path="/:id">
-					<PortfolioItemShow />
+					<ProjectShow />
 				</Route>
 
 				<Route path="/">
-					<PortfolioIndex />
+					<ProjectsIndex />
 				</Route>
 			</Switch>
 		</Router>
