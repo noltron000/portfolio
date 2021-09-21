@@ -57,6 +57,9 @@
 		"react/jsx-indent": ["error", "tab"],
 		"react/jsx-indent-props": ["error", "tab"],
 
+		// Use stroustrup brace style.
+		"brace-style": ["error", "stroustrup"],
+
 		// Disallow default props.
 		"react/require-default-props": ["off"],
 
