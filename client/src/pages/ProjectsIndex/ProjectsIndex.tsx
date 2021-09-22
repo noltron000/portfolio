@@ -18,11 +18,11 @@ const ProjectsIndex = (): JSX.Element => {
 		fetchProjects();
 	}, []);
 
-	// Load pre-paginated amount of portfolio items.
-	// Return a list of each portfolio item, linking to each.
+	// Load pre-paginated amount of projects.
+	// Return a list of each project, linking to each.
 	return (
 		<>
-			<h2>Portfolio Index</h2>
+			<h2>Projects Index</h2>
 			<p>Here&apos;s a list of items.</p>
 			<ul>
 				{projects.map((project) => (

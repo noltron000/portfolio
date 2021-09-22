@@ -40,7 +40,7 @@ const ProjectForm = ({
 	// Show the form to submit a new item, and create it on submit.
 	return (
 		<>
-			<h2>Add Portfolio Item</h2>
+			<h2>Add Project</h2>
 			<form
 				onSubmit={async (event) => {
 					event.preventDefault();
