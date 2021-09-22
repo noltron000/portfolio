@@ -26,6 +26,7 @@ const ProjectsIndex = (): JSX.Element => {
 		<>
 			<h2>Projects Index</h2>
 			<p>Here&apos;s a list of items.</p>
+
 			<ul>
 				{projects.map((project) => (
 					<li key={project._id}>
@@ -34,12 +35,16 @@ const ProjectsIndex = (): JSX.Element => {
 				))}
 			</ul>
 
-			<p>User Links</p>
-			<ul>
-				<li>
-					<Link to="/new">Add a Project</Link>
-				</li>
-			</ul>
+			<nav>
+				<h2>Page Navigation</h2>
+				<ul>
+					<li>
+						<Link to="/new">
+							Add a Project
+						</Link>
+					</li>
+				</ul>
+			</nav>
 		</>
 	);
 };
