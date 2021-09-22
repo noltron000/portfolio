@@ -1,3 +1,13 @@
+const indexProjects = async (): Promise<Response | null> => {
+	try {
+		return fetch('/projects', { method: 'GET' });
+	}
+	catch (err) {
+		console.error(err);
+		return null;
+	}
+};
+
 const fetchProject = async (
 	{ id }: Record<string, string>,
 ): Promise<Response | null> => {
@@ -65,6 +75,7 @@ const deleteProject = async (
 };
 
 export {
+	indexProjects,
 	fetchProject,
 	createProject,
 	updateProject,

@@ -2,22 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import ProjectCard from '../../components/ProjectCard/ProjectCard';
+import { indexProjects } from '../../functions/server-calls';
 
 const ProjectsIndex = (): JSX.Element => {
 	// Gather the projects asyncronously using state, fetch, and effects.
 	const [projects, setProjects] = useState<Array<any>>([]); // TODO: Type-ify this
-	const indexProjects = async () => {
-		try {
-			const response = await fetch('/projects', { method: 'GET' });
-			const dbProjects = await response.json();
-			setProjects(dbProjects);
-		}
-		catch (err) {
-			console.error(err);
-		}
-	};
 	useEffect(() => {
-		indexProjects();
+		(async () => {
+			const response = await indexProjects();
+			if (response == null) {
+				setProjects([]);
+			}
+			else {
+				const data = await response.json();
+				setProjects(data);
+			}
+		})();
 	}, []);
 
 	// Load pre-paginated amount of projects.
