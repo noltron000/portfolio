@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { createProject } from '../../functions/server-calls';
 
 const ProjectNew = (): JSX.Element => {
 	// Initialize react component state.
+	const history = useHistory(); // Used for redirects in buttons.
 	const [name, setName] = useState<string>('');
 	const [description, setDescription] = useState<string>('');
 
@@ -15,7 +16,15 @@ const ProjectNew = (): JSX.Element => {
 			<form
 				onSubmit={async (event) => {
 					event.preventDefault();
-					createProject({ name, description });
+					const response = await createProject({ name, description });
+					if (response == null) {
+						throw new Error('the server didn\'t create a project!');
+					}
+					else {
+						const project = await response.json();
+						const id = project._id;
+						history.push(`/${id}`);
+					}
 				}}
 			>
 				<label htmlFor="name">

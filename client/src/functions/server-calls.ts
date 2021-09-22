@@ -23,9 +23,9 @@ const fetchProject = async (
 const createProject = async ({
 	name,
 	description,
-}: Record<string, string>): Promise<void> => {
+}: Record<string, string>): Promise<Response | null> => {
 	try {
-		await fetch('/projects/create', {
+		return fetch('/projects/create', {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',
@@ -39,6 +39,7 @@ const createProject = async ({
 	}
 	catch (err) {
 		console.error(err);
+		return null;
 	}
 };
 
