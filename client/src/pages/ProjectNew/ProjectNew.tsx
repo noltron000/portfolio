@@ -1,27 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-const createProject = async ({
-	name,
-	description,
-}: Record<string, string>): Promise<void> => {
-	try {
-		await fetch('/projects/create', {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				name,
-				description,
-			}),
-		});
-	}
-	catch (err) {
-		console.error(err);
-	}
-};
+import { createProject } from '../../functions/server-calls';
 
 const ProjectNew = (): JSX.Element => {
 	// Initialize react component state.
