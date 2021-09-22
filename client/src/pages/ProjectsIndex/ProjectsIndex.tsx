@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const ProjectsIndex = () => {
+const ProjectsIndex = (): JSX.Element => {
 	// Gather the projects asyncronously using state, fetch, and effects.
-	const [projects, setProjects] = useState<Array<any>>([]);
+	const [projects, setProjects] = useState<Array<any>>([]); // TODO: Type-ify this
 	const fetchProjects = async () => {
 		try {
 			const response = await fetch('/projects', { method: 'GET' });
