@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
 import {
 	fetchProject,
@@ -14,6 +14,7 @@ const ProjectEditSuccess = ({ project }: {
 	const id = project._id;
 
 	// Initialize react component state.
+	const history = useHistory(); // Used for redirects in buttons.
 	const [name, setName] = useState<string>(project.name);
 	const [description, setDescription] = useState<string>(project.description);
 
@@ -24,7 +25,8 @@ const ProjectEditSuccess = ({ project }: {
 			<form
 				onSubmit={async (event) => {
 					event.preventDefault();
-					updateProject({ id, name, description });
+					await updateProject({ id, name, description });
+					history.push(`/${id}`);
 				}}
 			>
 				<label htmlFor="name">
@@ -59,7 +61,10 @@ const ProjectEditSuccess = ({ project }: {
 
 				<button
 					type="button"
-					onClick={() => deleteProject({ id })}
+					onClick={() => {
+						deleteProject({ id });
+						history.push('/');
+					}}
 				>
 					Delete
 				</button>
