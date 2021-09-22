@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ProjectShow = (): JSX.Element => {
 	// Grab the url parameters.
@@ -20,9 +20,6 @@ const ProjectShow = (): JSX.Element => {
 	useEffect(() => {
 		fetchProject();
 	}, []);
-
-	// Must use history to redirect a button onClick.
-	const history = useHistory();
 
 	// Load data on the portfolio item and display it nicely.
 	return (
