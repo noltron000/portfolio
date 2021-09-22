@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 interface Props {
 	type: 'new' | 'edit';
@@ -11,20 +12,26 @@ const ProjectForm = ({
 	initialName,
 	initialDescription,
 }: Props): JSX.Element => {
+	// Grab the url parameters.
+	const { id } = useParams<{id: string}>();
+
 	// Initialize react component state.
 	const [name, setName] = useState(initialName ?? '');
 	const [description, setDescription] = useState(initialDescription ?? '');
 
 	// Determine form action and method.
-	let action: 'create' | 'update';
+	let action: string;
+	let backUrl: string;
 	let method: 'POST' | 'PUT';
 	if (type === 'new') {
-		action = 'create';
+		backUrl = '/';
+		action = '/projects/create';
 		method = 'POST';
 	}
 	else if (type === 'edit') {
-		action = 'update';
-		method = 'PUT';
+		backUrl = `/${id}`;
+		action = `/projects/${id}/update`;
+		method = 'POST';
 	}
 	else {
 		throw new TypeError('Unexpected component type!');
@@ -35,8 +42,25 @@ const ProjectForm = ({
 		<>
 			<h2>Add Portfolio Item</h2>
 			<form
-				method={method}
-				action={`/portfolio-item/${action}`}
+				onSubmit={async (event) => {
+					event.preventDefault();
+					try {
+						await fetch(action, {
+							method,
+							headers: {
+								Accept: 'application/json',
+								'Content-Type': 'application/json',
+							},
+							body: JSON.stringify({
+								name,
+								description,
+							}),
+						});
+					}
+					catch (err) {
+						console.error(err);
+					}
+				}}
 			>
 				<label htmlFor="name">Name</label>
 				<input
@@ -59,6 +83,13 @@ const ProjectForm = ({
 				<br />
 
 				<button type="submit">Submit</button>
+
+				<p>User Links</p>
+				<ul>
+					<li>
+						<Link to={backUrl}>Back</Link>
+					</li>
+				</ul>
 			</form>
 		</>
 	);

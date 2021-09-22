@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ProjectsIndex = () => {
-	const [projects, setProjects] = useState<null | Record<string, unknown>>(null);
-
+	// Gather the projects asyncronously using state, fetch, and effects.
+	const [projects, setProjects] = useState<Array<any>>([]);
 	const fetchProjects = async () => {
 		try {
-			const response = await fetch('/projects', {
-				method: 'GET',
-			});
+			const response = await fetch('/projects', { method: 'GET' });
 			const dbProjects = await response.json();
 			setProjects(dbProjects);
 		}
@@ -15,7 +14,6 @@ const ProjectsIndex = () => {
 			console.error(err);
 		}
 	};
-
 	useEffect(() => {
 		fetchProjects();
 	}, []);
@@ -26,7 +24,24 @@ const ProjectsIndex = () => {
 		<>
 			<h2>Portfolio Index</h2>
 			<p>Here&apos;s a list of items.</p>
-			<pre><code>{JSON.stringify(projects, undefined, '\t')}</code></pre>
+			<ul>
+				{projects.map((project) => (
+					// Map over each project and create list items.
+					<li key={project._id}>
+						<Link to={`/${project._id}`}>
+							<h3>{project.name}</h3>
+						</Link>
+						{project.description}
+					</li>
+				))}
+			</ul>
+
+			<p>User Links</p>
+			<ul>
+				<li>
+					<Link to="/new">Add a Project</Link>
+				</li>
+			</ul>
 		</>
 	);
 };

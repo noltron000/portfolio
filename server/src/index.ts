@@ -9,6 +9,7 @@ const port = 5000;
 
 connect(uri);
 
+app.use(express.json())
 app.use('/', projectRoutes)
 
 app.listen(port, () => {
