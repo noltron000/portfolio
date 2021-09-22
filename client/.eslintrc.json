@@ -67,7 +67,10 @@
 		"react/require-default-props": ["off"],
 
 		// Use htmlFor with form labels.
-		"jsx-a11y/label-has-associated-control": ["error", {"assert": "htmlFor"}]
+		"jsx-a11y/label-has-associated-control": ["error", {"assert": "htmlFor"}],
+
+		// Warn console for only log methods, dir methods, and trace methods.
+		"no-console": ["warn", {"allow": ["info", "warn", "error"]}]
 	},
 	"overrides": [
 		{
