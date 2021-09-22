@@ -100,9 +100,7 @@ const ProjectEdit = (): JSX.Element => {
 
 	return (
 		<>
-			{project && (
-				<ProjectEditSuccess project={project} />
-			)}
+			{project && <ProjectEditSuccess project={project} />}
 		</>
 	);
 };

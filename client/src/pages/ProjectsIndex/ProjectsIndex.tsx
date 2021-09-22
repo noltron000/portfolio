@@ -6,7 +6,7 @@ import ProjectCard from '../../components/ProjectCard/ProjectCard';
 const ProjectsIndex = (): JSX.Element => {
 	// Gather the projects asyncronously using state, fetch, and effects.
 	const [projects, setProjects] = useState<Array<any>>([]); // TODO: Type-ify this
-	const fetchProjects = async () => {
+	const fetchProjectsIndex = async () => {
 		try {
 			const response = await fetch('/projects', { method: 'GET' });
 			const dbProjects = await response.json();
@@ -17,7 +17,7 @@ const ProjectsIndex = (): JSX.Element => {
 		}
 	};
 	useEffect(() => {
-		fetchProjects();
+		fetchProjectsIndex();
 	}, []);
 
 	// Load pre-paginated amount of projects.
