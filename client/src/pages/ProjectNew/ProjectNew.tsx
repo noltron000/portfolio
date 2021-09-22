@@ -1,7 +1,86 @@
-import React from 'react';
-import ProjectForm from '../../components/ProjectForm/ProjectForm';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-// Show the form to create and submit a new item.
-const ProjectNew = (): JSX.Element => <ProjectForm type="new" />;
+const createProject = async ({
+	name,
+	description,
+}: Record<string, string>): Promise<void> => {
+	try {
+		await fetch('/projects/create', {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				name,
+				description,
+			}),
+		});
+	}
+	catch (err) {
+		console.error(err);
+	}
+};
+
+const ProjectNew = (): JSX.Element => {
+	// Initialize react component state.
+	const [name, setName] = useState<string>('');
+	const [description, setDescription] = useState<string>('');
+
+	// Show the form to submit a new item, and create it on submit.
+	return (
+		<>
+			<h2>Create New Project</h2>
+			<form
+				onSubmit={async (event) => {
+					event.preventDefault();
+					createProject({ name, description });
+				}}
+			>
+				<label htmlFor="name">
+					Name:
+					{' '}
+				</label>
+				<input
+					type="text"
+					id="name"
+					value={name}
+					onChange={(event) => setName(event.target.value)}
+				/>
+
+				<br />
+
+				<label htmlFor="description">
+					Description:
+					{' '}
+				</label>
+				<input
+					type="text"
+					id="description"
+					value={description}
+					onChange={(event) => setDescription(event.target.value)}
+				/>
+
+				<br />
+
+				<button type="submit">
+					Submit
+				</button>
+
+				<nav>
+					<h2>Page Navigation</h2>
+					<ul>
+						<li>
+							<Link to="/">
+								Back
+							</Link>
+						</li>
+					</ul>
+				</nav>
+			</form>
+		</>
+	);
+};
 
 export default ProjectNew;

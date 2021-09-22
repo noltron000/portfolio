@@ -40,7 +40,7 @@ const ProjectsIndex = (): JSX.Element => {
 				<ul>
 					<li>
 						<Link to="/new">
-							Add a Project
+							Create New Project
 						</Link>
 					</li>
 				</ul>
