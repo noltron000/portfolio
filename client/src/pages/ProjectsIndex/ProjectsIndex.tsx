@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import ProjectCard from '../../components/ProjectCard/ProjectCard';
+
 const ProjectsIndex = (): JSX.Element => {
 	// Gather the projects asyncronously using state, fetch, and effects.
 	const [projects, setProjects] = useState<Array<any>>([]); // TODO: Type-ify this
@@ -26,12 +28,8 @@ const ProjectsIndex = (): JSX.Element => {
 			<p>Here&apos;s a list of items.</p>
 			<ul>
 				{projects.map((project) => (
-					// Map over each project and create list items.
 					<li key={project._id}>
-						<Link to={`/${project._id}`}>
-							<h3>{project.name}</h3>
-						</Link>
-						{project.description}
+						<ProjectCard project={project} />
 					</li>
 				))}
 			</ul>
