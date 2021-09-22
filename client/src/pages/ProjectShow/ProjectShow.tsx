@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+
 import { fetchProject } from '../../functions/server-calls';
 
 // Assumes the project is done downloading.
