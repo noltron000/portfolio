@@ -27,34 +27,25 @@ const ProjectShow = (): JSX.Element => {
 	// Load data on the portfolio item and display it nicely.
 	return (
 		<>
-			<h2>Show Project</h2>
-			<p>Here&apos;s the chosen item!</p>
-			<div>
-				<h3>{project.name}</h3>
-				<p>{project.description}</p>
-			</div>
+			<h2>{project.name}</h2>
+			<p>{project.description}</p>
 
-			<p>User Links</p>
-			<ul>
-				<li>
-					<Link to="/">Back</Link>
-				</li>
-				<li>
-					<Link to={`/${id}/edit`}>Edit</Link>
-				</li>
-				<li>
-					<button
-						type="button"
-						onClick={async (event) => {
-							event.preventDefault();
-							await fetch(`/projects/${id}/delete`, { method: 'POST' });
-							history.push('/');
-						}}
-					>
-						Delete
-					</button>
-				</li>
-			</ul>
+			<nav>
+				<h2>Page Navigation</h2>
+				<ul>
+					<li>
+						<Link to={`/${id}/edit`}>
+							Edit
+						</Link>
+					</li>
+
+					<li>
+						<Link to="/">
+							Back
+						</Link>
+					</li>
+				</ul>
+			</nav>
 		</>
 	);
 };
