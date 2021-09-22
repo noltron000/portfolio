@@ -1,6 +1,88 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import ProjectForm from '../../components/ProjectForm/ProjectForm';
+import { Link, useHistory, useParams } from 'react-router-dom';
+
+import {
+	fetchProject,
+	updateProject,
+	deleteProject,
+} from '../../functions/server-calls';
+
+// Assumes the project is done downloading.
+const ProjectEditSuccess = ({ project }: {
+	project: any, // TODO: Type-ify this
+}): JSX.Element => {
+	const id = project._id;
+
+	// Initialize react component state.
+	const history = useHistory(); // Used for redirects in buttons.
+	const [name, setName] = useState<string>(project.name);
+	const [description, setDescription] = useState<string>(project.description);
+
+	// Show the form to submit a new item, and create it on submit.
+	return (
+		<>
+			<h2>Update Project</h2>
+			<form
+				onSubmit={async (event) => {
+					event.preventDefault();
+					await updateProject({ id, name, description });
+					history.push(`/${id}`);
+				}}
+			>
+				<label htmlFor="name">
+					Name:
+					{' '}
+				</label>
+				<input
+					type="text"
+					id="name"
+					value={name}
+					onChange={(event) => setName(event.target.value)}
+				/>
+
+				<br />
+
+				<label htmlFor="description">
+					Description:
+					{' '}
+				</label>
+				<input
+					type="text"
+					id="description"
+					value={description}
+					onChange={(event) => setDescription(event.target.value)}
+				/>
+
+				<br />
+
+				<button type="submit">
+					Update
+				</button>
+
+				<button
+					type="button"
+					onClick={() => {
+						deleteProject({ id });
+						history.push('/');
+					}}
+				>
+					Delete
+				</button>
+
+				<nav>
+					<h2>Page Navigation</h2>
+					<ul>
+						<li>
+							<Link to={`/${id}`}>
+								Back
+							</Link>
+						</li>
+					</ul>
+				</nav>
+			</form>
+		</>
+	);
+};
 
 // Show the form to create and submit a new item.
 const ProjectEdit = (): JSX.Element => {
@@ -9,29 +91,22 @@ const ProjectEdit = (): JSX.Element => {
 
 	// Gather the projects asyncronously using state, fetch, and effects.
 	const [project, setProject] = useState<any>(null); // TODO: Type-ify this
-	const fetchProject = async () => {
-		try {
-			const response = await fetch(`/projects/${id}`, { method: 'GET' });
-			const dbProject = await response.json();
-			setProject(dbProject);
-		}
-		catch (err) {
-			console.error(err);
-		}
-	};
 	useEffect(() => {
-		fetchProject();
+		(async () => {
+			const response = await fetchProject({ id });
+			if (response == null) {
+				setProject(null);
+			}
+			else {
+				const data = await response.json();
+				setProject(data);
+			}
+		})();
 	}, []);
 
 	return (
 		<>
-			{project && (
-				<ProjectForm
-					type="edit"
-					initialName={project.name}
-					initialDescription={project.description}
-				/>
-			)}
+			{project && <ProjectEditSuccess project={project} />}
 		</>
 	);
 };

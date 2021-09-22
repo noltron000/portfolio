@@ -1,60 +1,61 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
+import { fetchProject } from '../../functions/server-calls';
+
+// Assumes the project is done downloading.
+const ProjectShowSuccess = ({ project }: {
+	project: any, // TODO: Type-ify this
+}): JSX.Element => {
+	const id = project._id;
+	return (
+		<>
+			<h2>{project.name}</h2>
+			<p>{project.description}</p>
+
+			<nav>
+				<h2>Page Navigation</h2>
+				<ul>
+					<li>
+						<Link to={`/${id}/edit`}>
+							Edit
+						</Link>
+					</li>
+
+					<li>
+						<Link to="/">
+							Back
+						</Link>
+					</li>
+				</ul>
+			</nav>
+		</>
+	);
+};
+
+// Load data on the portfolio item and display it nicely.
 const ProjectShow = (): JSX.Element => {
 	// Grab the url parameters.
 	const { id } = useParams<{id: string}>();
 
 	// Gather the projects asyncronously using state, fetch, and effects.
-	const [project, setProject] = useState<any>({}); // TODO: Type-ify this
-	const fetchProject = async () => {
-		try {
-			const response = await fetch(`/projects/${id}`, { method: 'GET' });
-			const dbProject = await response.json();
-			setProject(dbProject);
-		}
-		catch (err) {
-			console.error(err);
-		}
-	};
+	const [project, setProject] = useState<any>(null); // TODO: Type-ify this
 	useEffect(() => {
-		fetchProject();
+		(async () => {
+			const response = await fetchProject({ id });
+			if (response == null) {
+				setProject(null);
+			}
+			else {
+				const data = await response.json();
+				setProject(data);
+			}
+		})();
 	}, []);
 
-	// Must use history to redirect a button onClick.
-	const history = useHistory();
-
-	// Load data on the portfolio item and display it nicely.
 	return (
 		<>
-			<h2>Show Portfolio Item</h2>
-			<p>Here&apos;s the chosen item!</p>
-			<div>
-				<h3>{project.name}</h3>
-				<p>{project.description}</p>
-			</div>
-
-			<p>User Links</p>
-			<ul>
-				<li>
-					<Link to="/">Back</Link>
-				</li>
-				<li>
-					<Link to={`/${id}/edit`}>Edit</Link>
-				</li>
-				<li>
-					<button
-						type="button"
-						onClick={async (event) => {
-							event.preventDefault();
-							await fetch(`/projects/${id}/delete`, { method: 'POST' });
-							history.push('/');
-						}}
-					>
-						Delete
-					</button>
-				</li>
-			</ul>
+			{project && <ProjectShowSuccess project={project} />}
 		</>
 	);
 };

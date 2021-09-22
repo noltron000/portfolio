@@ -1,47 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import ProjectCard from '../../components/ProjectCard/ProjectCard';
+import { indexProjects } from '../../functions/server-calls';
+
 const ProjectsIndex = (): JSX.Element => {
 	// Gather the projects asyncronously using state, fetch, and effects.
 	const [projects, setProjects] = useState<Array<any>>([]); // TODO: Type-ify this
-	const fetchProjects = async () => {
-		try {
-			const response = await fetch('/projects', { method: 'GET' });
-			const dbProjects = await response.json();
-			setProjects(dbProjects);
-		}
-		catch (err) {
-			console.error(err);
-		}
-	};
 	useEffect(() => {
-		fetchProjects();
+		(async () => {
+			const response = await indexProjects();
+			if (response == null) {
+				setProjects([]);
+			}
+			else {
+				const data = await response.json();
+				setProjects(data);
+			}
+		})();
 	}, []);
 
-	// Load pre-paginated amount of portfolio items.
-	// Return a list of each portfolio item, linking to each.
+	// Load pre-paginated amount of projects.
+	// Return a list of each project, linking to each.
 	return (
 		<>
-			<h2>Portfolio Index</h2>
+			<h2>Projects Index</h2>
 			<p>Here&apos;s a list of items.</p>
+
 			<ul>
 				{projects.map((project) => (
-					// Map over each project and create list items.
 					<li key={project._id}>
-						<Link to={`/${project._id}`}>
-							<h3>{project.name}</h3>
-						</Link>
-						{project.description}
+						<ProjectCard project={project} />
 					</li>
 				))}
 			</ul>
 
-			<p>User Links</p>
-			<ul>
-				<li>
-					<Link to="/new">Add a Project</Link>
-				</li>
-			</ul>
+			<nav>
+				<h2>Page Navigation</h2>
+				<ul>
+					<li>
+						<Link to="/new">
+							Create New Project
+						</Link>
+					</li>
+				</ul>
+			</nav>
 		</>
 	);
 };
