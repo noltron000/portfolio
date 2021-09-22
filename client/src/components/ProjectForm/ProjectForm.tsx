@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
 interface Props {
 	type: 'new' | 'edit';
@@ -18,6 +18,7 @@ const ProjectForm = ({
 	// Initialize react component state.
 	const [name, setName] = useState(initialName ?? '');
 	const [description, setDescription] = useState(initialDescription ?? '');
+	const history = useHistory();
 
 	// Determine form action and method.
 	let action: string;
@@ -40,7 +41,7 @@ const ProjectForm = ({
 	// Show the form to submit a new item, and create it on submit.
 	return (
 		<>
-			<h2>Add Project</h2>
+			<h2>Create/Update Project</h2>
 			<form
 				onSubmit={async (event) => {
 					event.preventDefault();
@@ -82,14 +83,30 @@ const ProjectForm = ({
 
 				<br />
 
-				<button type="submit">Submit</button>
+				<button type="submit">
+					Create/Update
+				</button>
+				<button
+					type="button"
+					onClick={async (event) => {
+						event.preventDefault();
+						await fetch(`/projects/${id}/delete`, { method: 'POST' });
+						history.push('/');
+					}}
+				>
+					Delete
+				</button>
 
-				<p>User Links</p>
-				<ul>
-					<li>
-						<Link to={backUrl}>Back</Link>
-					</li>
-				</ul>
+				<nav>
+					<h2>Page Navigation</h2>
+					<ul>
+						<li>
+							<Link to={backUrl}>
+								Back
+							</Link>
+						</li>
+					</ul>
+				</nav>
 			</form>
 		</>
 	);
