@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { fetchProject } from '../../functions/server-calls';
 
 const ProjectShow = (): JSX.Element => {
 	// Grab the url parameters.
@@ -7,18 +8,17 @@ const ProjectShow = (): JSX.Element => {
 
 	// Gather the projects asyncronously using state, fetch, and effects.
 	const [project, setProject] = useState<any>({}); // TODO: Type-ify this
-	const fetchProject = async () => {
-		try {
-			const response = await fetch(`/projects/${id}`, { method: 'GET' });
-			const dbProject = await response.json();
-			setProject(dbProject);
-		}
-		catch (err) {
-			console.error(err);
-		}
-	};
 	useEffect(() => {
-		fetchProject();
+		(async () => {
+			const response = await fetchProject({ id });
+			if (response == null) {
+				setProject(null);
+			}
+			else {
+				const data = await response.json();
+				setProject(data);
+			}
+		})();
 	}, []);
 
 	// Load data on the portfolio item and display it nicely.
