@@ -5,10 +5,15 @@
 	"description": "Personal portfolio to showcase projects.",
 	"version": "0.1.1",
 	"license": "MIT",
-	"private": false,
+	"private": true,
 	"dependencies": {
 		"typescript": "^4.4.3"
 	},
 	"devDependencies": {},
-	"scripts": {}
+	"scripts": {
+		"client": "yarn workspace client start",
+		"server": "yarn workspace server start",
+		"start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\""
+	},
+	"workspaces": ["client", "server"]
 }
