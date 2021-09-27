@@ -15,5 +15,8 @@
 		"server": "yarn workspace server start",
 		"start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\""
 	},
+	"resolutions": {
+		"babel-loader": "8.1.0"
+	},
 	"workspaces": ["client", "server"]
 }
