@@ -1,0 +1,12 @@
+{
+	"author": "Nolan Kovacik <noltron000@gmail.com>",
+	"repository": "git@github.com:noltron000/portfolio.git",
+	"name": "portfolio",
+	"description": "Personal portfolio to showcase projects.",
+	"version": "0.1.1",
+	"license": "MIT",
+	"private": false,
+	"dependencies": {},
+	"devDependencies": {},
+	"scripts": {}
+}
