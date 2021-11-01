@@ -1,0 +1,26 @@
+{
+	"author": "Nolan Kovacik <noltron000@gmail.com>",
+	"repository": "git@github.com:noltron000/portfolio.git",
+	"name": "portfolio",
+	"description": "Personal portfolio to showcase projects.",
+	"version": "0.1.1",
+	"license": "MIT",
+	"private": true,
+	"dependencies": {
+		"concurrently": "^6.2.1",
+		"typescript": "^4.4.3"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"client": "yarn workspace client start",
+		"server": "yarn workspace server start",
+		"start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\""
+	},
+	"resolutions": {
+		"babel-loader": "8.1.0"
+	},
+	"workspaces": [
+		"client",
+		"server"
+	]
+}
