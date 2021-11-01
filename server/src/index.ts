@@ -1,11 +1,13 @@
+import * as dotenv from "dotenv"
 import * as express from "express";
 import { connect } from "mongoose";
 import projectRoutes from "./database/projects/router"
 
-import { uri } from "./database.env";
+dotenv.config()
 
 const app = express();
-const port = 5000;
+const uri: string = process.env.MONGODB_URI
+const port: string = process.env.PORT ?? '5000'
 
 connect(uri);
 
